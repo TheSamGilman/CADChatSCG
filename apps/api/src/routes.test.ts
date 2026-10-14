@@ -7,6 +7,8 @@ import { createApp } from "./app.ts";
 
 const app = createApp();
 
+// A starting point for API tests, not full coverage: one example that exercises the whole stack.
+
 describe("PATCH /api/reviews/:id", () => {
   it("decides a pending review once; a second decision gets 409", async () => {
     const [part]: Part[] = (await request(app).get("/api/parts").expect(200))

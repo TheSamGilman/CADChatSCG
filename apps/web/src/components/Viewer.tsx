@@ -15,6 +15,7 @@ export function Viewer() {
   return (
     <div className="relative h-full w-full">
       <Canvas
+        frameloop="demand"
         camera={{ position: [3, 3, 3], fov: 50 }}
         onPointerDown={onPointerDown}
         onPointerMissed={(event) => {

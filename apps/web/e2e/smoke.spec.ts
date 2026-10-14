@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 
+// A starting point for end-to-end tests, not full coverage: a read-only smoke test.
 test("clicking the cube opens its review panel", async ({ page }) => {
   await page.goto("/");
   const canvas = page.locator("canvas");
