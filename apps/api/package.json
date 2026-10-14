@@ -1,0 +1,29 @@
+{
+  "name": "@cadchatscg/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "biome check .",
+    "check-types": "tsc --noEmit",
+    "dev": "node --env-file=.env --watch src/index.ts",
+    "start": "node --env-file-if-exists=.env src/index.ts",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@cadchatscg/typescript-config": "*",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.19.2",
+    "@types/supertest": "^6.0.3",
+    "supertest": "^7.3.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.4"
+  },
+  "dependencies": {
+    "@cadchatscg/database": "*",
+    "@cadchatscg/shared": "*",
+    "express": "^5.3.0",
+    "zod": "^4.6.7"
+  }
+}

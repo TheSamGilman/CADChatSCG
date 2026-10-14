@@ -1,0 +1,26 @@
+{
+  "name": "@cadchatscg/shared",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "biome check .",
+    "check-types": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@cadchatscg/typescript-config": "*",
+    "@types/node": "^24.19.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.4"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "exports": {
+    "./common": "./src/common.ts",
+    "./parts": "./src/parts.ts",
+    "./reviews": "./src/reviews.ts"
+  }
+}

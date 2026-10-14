@@ -1,0 +1,44 @@
+{
+  "name": "cadchatscg",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "npm@11.12.1",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": "^11.6.0",
+      "onFail": "error"
+    }
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "turbo": "^2.11.8",
+    "typescript": "^7.0.2"
+  },
+  "scripts": {
+    "setup": "node scripts/env.mjs && npm run setup -w @cadchatscg/database",
+    "env": "node scripts/env.mjs",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "check-types": "turbo run check-types",
+    "test": "turbo run test",
+    "test:e2e": "turbo run test:e2e",
+    "format": "biome check --write .",
+    "docker:check": "npm run docker:check -w @cadchatscg/database",
+    "db:start": "npm run db:start -w @cadchatscg/database",
+    "db:stop": "npm run db:stop -w @cadchatscg/database",
+    "db:reset": "npm run db:reset -w @cadchatscg/database",
+    "db:types": "npm run db:types -w @cadchatscg/database",
+    "migrate": "npm run migrate -w @cadchatscg/database"
+  }
+}

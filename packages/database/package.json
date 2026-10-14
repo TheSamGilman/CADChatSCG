@@ -1,0 +1,31 @@
+{
+  "name": "@cadchatscg/database",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "biome check .",
+    "check-types": "tsc --noEmit",
+    "db:start": "npm run docker:check && supabase start",
+    "db:stop": "supabase stop",
+    "migrate": "supabase migration up && npm run db:types",
+    "db:reset": "supabase db reset",
+    "db:types": "supabase gen types --local --schema public > src/database.types.ts",
+    "docker:check": "node -e \"const r=require('node:child_process').spawnSync('docker',['info'],{stdio:'ignore'});if(r.status!==0){console.error('Docker is not running (or not installed). Start Docker Desktop, then try again.');process.exit(1)}\"",
+    "setup": "npm run db:start && npm run migrate"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@cadchatscg/typescript-config": "*",
+    "@types/node": "^24.19.2",
+    "supabase": "2.120.0",
+    "typescript": "^7.0.2"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@cadchatscg/shared": "*",
+    "@supabase/supabase-js": "^2.117.3"
+  }
+}
