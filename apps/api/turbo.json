@@ -1,0 +1,8 @@
+{
+  "$schema": "https://turborepo.dev/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    // These tests hit the local database, which Turbo can't hash: never replay a cached result.
+    "test": { "cache": false }
+  }
+}
