@@ -1,0 +1,31 @@
+# Render Blueprint: the API as a Node web service, the web app as a static site that rewrites
+# /api/* to the API (same-origin, like the Vite proxy in dev). Database: Supabase Cloud.
+services:
+  - type: web
+    name: cadchat-review-api
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start -w @cadchatscg/api
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: API_PORT
+        value: "10000"
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SECRET_KEY
+        sync: false
+
+  - type: web
+    name: cadchat-review
+    runtime: static
+    buildCommand: npm ci && npm run build -w @cadchatscg/web
+    staticPublishPath: apps/web/dist
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://cadchat-review-api.onrender.com/api/*
